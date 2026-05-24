@@ -22,6 +22,10 @@ client.interceptors.request.use((config) => {
   if (orgId) {
     config.headers['x-organization-id'] = orgId;
   }
+  // FormData must set multipart boundary automatically (default json header breaks uploads)
+  if (config.data instanceof FormData) {
+    delete config.headers['Content-Type'];
+  }
   return config;
 });
 

@@ -13,9 +13,8 @@ export const resumeApi = {
   upload: (file) => {
     const formData = new FormData();
     formData.append('resume', file);
-    return client.post('/resumes/upload', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    // Let axios set Content-Type with boundary — manual multipart header breaks uploads
+    return client.post('/resumes/upload', formData);
   },
   list: (params) => client.get('/resumes', { params }),
   get: (id) => client.get(`/resumes/${id}`),

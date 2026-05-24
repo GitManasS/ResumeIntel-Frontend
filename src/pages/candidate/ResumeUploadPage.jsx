@@ -124,7 +124,8 @@ export default function ResumeUploadPage() {
                   </span>
                   {resume.status === 'failed' && (
                     <p className="mt-2 text-sm text-red-600 dark:text-red-400">
-                      Analysis failed. Re-upload a PDF or contact support.
+                      {resume.parseError ||
+                        'Analysis failed. Upload a text-based PDF (not a scanned image).'}
                     </p>
                   )}
                   {resume.parsedData?.skills?.length > 0 && (
